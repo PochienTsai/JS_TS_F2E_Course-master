@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>取得字串位置 indexOf</title>
+</head>
+<body>
+  <script>
+    const arr = ["mike", "jacky", "andy", "ash", "scars"];
+    const str = "123@456789";
+    console.log(arr.indexOf("@")); // -1 代表找不到 (查找索引)
+    console.log(str.indexOf("@")); // 3 代表找到 (查找索引)
+    console.log(str.includes("@")); // true 代表找到 (ES6)
+  </script>
+</body>
+</html>

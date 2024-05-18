@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pass by value 還有 Pass by reference</title>
+</head>
+<body>
+  <script>
+    /* 
+      # Pass by value
+      - String
+      - Number
+      - Boolean
+      - Undefined
+      - Null
+    */
+    let a = 1;
+    let b = a;
+    a = 5;
+    console.log(b);
+    /*
+      # Pass by reference
+      - Array
+      - Object
+    */
+    const arr = [1, 2, 3, 4, 5];
+    const arr2 = arr;
+    arr[0] = 100;
+    console.log(arr2);
+    const obj = {
+      name: "mike",
+    };
+    const obj2 = obj;
+    obj.name = "jacky";
+    console.log(obj);
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>運算子（加減乘除）</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/bg.css" />
+</head>
+<body>
+  <img id="logo" src="../images/logo1.png" alt="" />
+  <script>
+    // 一般運算子（加減乘除）
+    let a1 = 1 + 1;
+    let a2 = 2 - 1;
+    let a3 = 2 * 2;
+    let a4 = 4 / 2;
+    // 特殊運算子轉型
+    let b1 = 1 + "1"; // -> 11 (數字轉字串)
+    console.log(b1);
+    let b2 = 1 - "1"; // -> 0 (字串轉數字)
+    console.log(b2);
+    let b3 = 1 * "1"; // -> 1 (字串轉數字)
+    console.log(b3);
+    let b4 = 1 / "1"; // -> 1 (字串轉數字)
+    console.log(b4);
+    let c1 = "60" - 0; // -> 60 (字串轉數字)
+  </script>
+</body>
+</html>

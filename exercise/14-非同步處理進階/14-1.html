@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>什麼是 Promise</title>
+  </head>
+  <body>
+    <script>
+      function stopTime() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() =>
+          {
+            reject("error");
+          }, 2000);
+        });
+      }
+
+      stopTime().then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
+    </script>
+  </body>
+</html>

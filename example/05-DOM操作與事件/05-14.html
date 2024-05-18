@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>常用的 window.innerWidth</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/05-13.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="fly"></div>
+    </div>
+    <script>
+      const fly = document.querySelector("#fly");
+      let isDown = false;
+
+      window.addEventListener("mousedown", function (e) {
+        isDown = true;
+        fly.style.top = `${e.pageY}px`;
+        fly.style.left = `${e.pageX}px`;
+      });
+
+      window.addEventListener("mouseover", function (e) {
+        // const ww = window.innerWidth / 2;
+        if (isDown) {
+          const ww = window.innerWidth / 2; // 看你要在那個時間點取得
+          fly.style.top = `${e.pageY}px`;
+          fly.style.left = `${e.pageX}px`;
+          if (e.pageX < ww) {
+            fly.style.transform = "translate(-50%, -50%) scaleX(-1) ";
+          }
+          if (e.pageX > ww) {
+            fly.style.transform = "translate(-50%, -50%) scaleX(1) ";
+          }
+        }
+      });
+
+      window.addEventListener("mouseup", function (e) {
+        isDown = false;
+        fly.style.top = `${e.pageY}px`;
+        fly.style.left = `${e.pageX}px`;
+      });
+    </script>
+  </body>
+</html>

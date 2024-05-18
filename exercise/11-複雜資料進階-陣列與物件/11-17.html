@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>展開運算子</title>
+</head>
+<body>
+  <script>
+    // 陣列的合併
+    const a = [1, 2, 3];
+    const b = [4, 5];
+    const c = a.concat(b); // [1, 2, 3, 4, 5]
+    const d = [...a, ...b]; // [1, 2, 3, 4, 5]
+    console.log("1=>", c);
+    console.log("2=>", d);
+    // ---------------------------------------------------------------------
+
+    // 陣列展開傳入函式
+    function addNum(x, y)
+    {
+      return x + y;
+    }
+    const arr = [1, 2];
+    addNum(arr[0], arr[1]); // 3
+    console.log("3=>", addNum(...arr)); // 3 // 展開運算子
+    // ---------------------------------------------------------------------
+
+    //字串分割
+    const str = "mike";
+    const arr1 = str.split(""); // ["m", "i", "k", "e"]
+    const arr2 = [...str]; // ["m", "i", "k", "e"]
+    console.log("4=>", arr1);
+    console.log("5=>", ...arr2);
+    // ---------------------------------------------------------------------
+
+    // 剩下的解構物件
+    const obj1 = {
+      name: "mike",
+      age: 12,
+      address: "taiwan",
+      sex: "boy",
+      code: "javascript",
+      sports: "basketball",
+      watch: "movie",
+    };
+    //const name = obj1.name;
+    //const age = obj1.age;
+    //const other = {
+    // address: obj1.address,
+    //sex: obj1.sex,
+    //code: obj1.code,
+    //sports: obj1.sports,
+    //watch: obj1.watch,
+    // };
+    const { name, age, ...other } = obj1;
+    console.log("6=>", name);
+    console.log("7=>", age);
+    console.log("8=>", other);
+  </script>
+</body>
+</html>

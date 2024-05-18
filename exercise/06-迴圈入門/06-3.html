@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>for 迴圈 - 2</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/06-2.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="Ball" style="border-radius: 1px">1</div>
+  </div>
+
+  <script>
+    const app = document.getElementById("app");
+    let html = "";
+    const bigNum = 50;
+    for (let i = 1; i <= bigNum; i++)
+    {
+      html += `
+          <div id="a${i}" class="Ball" style="border-radius: ${i}px">${i}</div>
+        `;
+    }
+    app.innerHTML = html;
+    for (let i = 1; i <= bigNum; i++)
+    {
+      const ball = document.querySelector(`#a${i}`);
+      ball.addEventListener("click", (e) =>
+      {
+        e.target.style.backgroundColor = "red";
+        e.target.style.color = "white";
+      });
+    }
+  </script>
+</body>
+</html>

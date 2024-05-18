@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>字串反轉</title>
+</head>
+<body>
+  <script>
+    function reverseFn(txt)
+    {
+      //return txt.split("").reverse().join(""); // split() 將字串轉為陣列，reverse() 反轉陣列，join() 將陣列轉為字串
+      return [...txt].reverse().join(""); // 利用解構將字串轉為陣列，反轉陣列，將陣列轉為字串
+    }
+
+    const text = reverseFn("HelloMike!"); // ==> !ekiMolleH
+
+    console.log(text);
+  </script>
+</body>
+</html>

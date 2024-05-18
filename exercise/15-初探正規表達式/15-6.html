@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>頭尾^$</title>
+  </head>
+  <body>
+    <script>
+      const strArr = [
+        "airline",
+        "banner",
+        "apple",
+        "cat",
+        "dog",
+        "applepay",
+        "linerair",
+        "airplane",
+        "wayair",
+        "habit",
+      ];
+      // 匹配任何開頭為 air 的字串
+      const regexStart = /^air/; // ^ 代表開頭
+      const strfilter = strArr.filter((item) => {
+        return regexStart.test(item);
+      });
+      console.log("Start:", strfilter); // -> ['airline', 'airplane']
+
+      // 匹配任何結尾為 er 的字串
+      const regexEnd = /er$/; // $ 代表結尾
+      const endfilter = strArr.filter((item) => {
+        return regexEnd.test(item);
+      });
+      console.log("End:", endfilter); // -> ['banner']
+
+      // 匹配任何開頭是 a ，結尾是 e 然後中間不管是英文或是數字的字串
+      const regexMid = /^a.*e$/;  // ^ 代表開頭 // .* 代表任何字元 // $ 代表結尾
+      const midfilter = strArr.filter((item) => {
+        return regexMid.test(item);
+      });
+      console.log("Mid:", midfilter); // -> ['airline', 'apple', 'airplane']
+    </script>
+  </body>
+</html>

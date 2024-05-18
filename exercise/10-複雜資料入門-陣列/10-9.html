@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>陣列迴圈組合</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/10-9.css" />
+</head>
+<body>
+  <header></header>
+  <div id="app">
+    <h1>即時新聞</h1>
+    <ul id="list">
+      <!-- <li><a href="javascript:;" target="_blank"></a></li>-->
+    </ul>
+    <a class="More" href="javascript:;">More ></a>
+    <!-- href 屬性值為 javascript:; 代表點擊連結時不會跳轉頁面, 但會執行 javascript:; 後的程式碼 -->
+  </div>
+  <footer></footer>
+  <script>
+    const title = [
+      "31歲女繼承8.5億遺產!海選50人「幫忙花錢」",
+      "外媒：台灣反抗中國選出「麻煩製造者」",
+      "罷免侯友宜」破7.6萬人加入 謝龍介發聲...",
+      "BBC為何台灣大選對世界很重要?",
+      "網美浴室自拍爆紅短片800萬次觀看",
+      "男子辭職後「刪光4000份公司文件」",
+    ];
+    const url = [
+      "https://www.ettoday.net/news/20240113/2663120.htm",
+      "https://www.ettoday.net/news/20240113/2663739.htm",
+      "https://www.ettoday.net/news/20240114/2663821.htm",
+      "https://www.ettoday.net/news/20240113/2663642.htm",
+      "https://www.ettoday.net/news/20240113/2663072.htm",
+      "https://www.ettoday.net/news/20240112/2662372.htm",
+    ];
+    let html = "";
+    for (let i = 0; i < title.length; i++)
+    {
+      html += `<li><a href="${url[i]}" target="_blank">${title[i]}</a></li>`;
+    }
+    document.querySelector("#list").innerHTML = html;   
+  </script>
+</body>
+</html>

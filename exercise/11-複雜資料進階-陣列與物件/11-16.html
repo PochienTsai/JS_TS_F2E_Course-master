@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>物件的解構</title>
+</head>
+<body>
+  <script>
+    const obj1 = {
+      name: "mike",
+      age: 12,
+      address: "taiwan",
+      sex: "boy",
+      code: "javascript",
+      sports: "basketball",
+      watch: "movie",
+    };
+
+    // 解構物件
+    // 以前
+    // const name = obj1.name;
+    // const age = obj1.age;
+
+    // 現在(解構)
+    const { name, address, age } = obj1;
+    console.log(name);
+    console.log(address);
+    console.log(age);
+
+    // 以前
+    //function addContent(obj)
+    //{
+    //  return `姓名:${obj.name}, 年齡:${obj.age}`;
+    //}
+
+    // 現在(解構)
+    function addContent({ name, age })
+    {
+      return `姓名:${name}, 年齡:${age}`;
+    }
+    //---------
+    const str = addContent(obj1);
+    console.log(str);
+
+    // 解構巢狀物件
+    const obj2 = {
+      nickName: 'John',
+      address: {
+        street: '123 Main St',
+        city: 'Anytown',
+        country: 'USA'
+      },
+      nickAge: 30
+    };
+
+    const { nickName, address: { street, city, country }, nickAge } = obj1;
+
+    console.log(nickName); // John
+    console.log(street); // 123 Main St
+    console.log(city); // Anytown
+    console.log(country); // USA
+    console.log(nickAge); // 30
+
+
+
+  </script>
+</body>
+</html>

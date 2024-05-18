@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>數字千分位符號</title>
+</head>
+<body>
+  <script>
+    function Num(num)
+    {
+      const str = num + "";
+      const strArr = [...str].reverse();
+      let i = 0;
+      let arr = [];
+      strArr.forEach(item =>
+      {
+        i++;
+        if (i > 3)
+        {
+          i = 1;
+          arr.push(",");
+        }
+        arr.push(item);
+      });
+      return arr.reverse().join(""); // 反轉陣列，再將陣列轉為字串
+    }
+
+    const n = Num(5241522);
+    console.log(n); // => 5,241,522
+  </script>
+</body>
+</html>

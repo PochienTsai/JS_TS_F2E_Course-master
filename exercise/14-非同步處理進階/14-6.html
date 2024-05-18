@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>初始化多個 API 執行處理方式 1 - Promise.all</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  </head>
+  <body>
+    <script>
+      const arr = [
+        axios.get("https://vue-lessons-api.vercel.app/photo/list"),
+        axios.get("https://vue-lessons-api.vercel.app/seo/home"),
+        axios.get("https://vue-lessons-api.vercel.app/city/list"),
+      ];
+      const init = async () => {
+      try{
+          const resArr = await Promise.all(arr);
+          console.log(resArr);
+          console.log(resArr[0].data);} // 第一個 API 的資料}
+      catch(err){
+          console.error("發生錯誤", err);
+      }
+
+        console.log("執行其他動作");
+      };
+
+      init();
+    </script>
+  </body>
+</html>

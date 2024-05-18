@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>mousedown & mouseup 事件</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/05-13.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="fly"></div>
+  </div>
+  <script>
+    const fly = document.querySelector("#fly");
+    let isDown = false;
+    // mousedown
+    window.addEventListener("mousedown", function (e)
+    {
+      console.log("滑鼠按下");
+      console.log(e.pageX, e.pageY);
+      isDown = true;
+      fly.style.left = `${e.pageX}px`;
+      fly.style.top = `${e.pageY}px`;
+    });
+    // mouseover
+    window.addEventListener("mouseover", function (e)
+    {
+      if (!isDown) return;
+      console.log("滑鼠移動");
+      console.log(e.pageX, e.pageY);
+      fly.style.left = `${e.pageX}px`;
+      fly.style.top = `${e.pageY}px`;
+    });
+    // mouseup
+    window.addEventListener("mouseup", function (e)
+    {
+      if (!isDown) return;
+      console.log("滑鼠放開");
+      console.log(e.pageX, e.pageY);
+      isDown = false;
+      fly.style.left = `${e.pageX}px`;
+      fly.style.top = `${e.pageY}px`;
+    });
+  </script>
+</body>
+</html>

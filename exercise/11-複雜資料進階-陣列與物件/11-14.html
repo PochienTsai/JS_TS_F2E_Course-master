@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>淺拷貝與深拷貝 - 2</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+</head>
+<body>
+  <script>
+    const obj1 = {
+      name: "mike",
+      info: {
+        age: 12,
+        address: "taiwan",
+        sex: "boy",
+        interest: {
+          code: "javascript",
+          sports: "basketball",
+          watch: "movie",
+        },
+      },
+    };
+    //下面做法是淺拷貝,僅會複製第一層的資料,不會複製物件或陣列,故第二層的資料會被參照到
+    const obj2 = Object.assign({}, obj1); // 淺拷貝 : 會複製第一層的資料 (不會複製物件或陣列)
+    obj1.info.interest.code = "React";
+    console.log(obj1); // obj1.info.interest.code = "React";
+    console.log(obj2); // obj2.info.interest.code = "React";
+    //下面做法是深拷貝,會複製所有的資料,包含物件或陣列
+    const obj3 = _.cloneDeep(obj1); // 深拷貝 : 會複製所有的資料,包含物件或陣列
+    obj1.info.interest.code = "Vue";
+    console.log(obj1); // obj1.info.interest.code = "Vue";
+    console.log(obj3); // obj1.info.interest.code = "React";
+  </script>
+</body>
+</html>

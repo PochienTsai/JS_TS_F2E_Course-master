@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>try catch 的錯誤處理</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  </head>
+  <body>
+    <script>
+      // 建議使用try catch來處理非同步的錯誤  這樣可以避免程式中斷
+      const init = async () => {
+        try {
+           const res = await axios.get(
+            "http://www.mocky.io/v2/5cc40dbe34000077007654af"
+          );
+          console.log(res.data);
+        } catch (error) {
+          console.error("發生錯誤", error);
+        }finally{
+          console.log("不管有沒有錯誤都會執行");
+        }
+      };
+
+      init();
+    </script>
+  </body>
+</html>

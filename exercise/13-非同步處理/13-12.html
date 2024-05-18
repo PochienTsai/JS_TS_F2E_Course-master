@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>?. 可選串連</title>
+  </head>
+  <body>
+    <script>
+      const people = {
+        name: "mike",
+        age: 12,
+        address: "Taiwan",
+      };
+
+      console.log(people.info.coding); // Uncaught TypeError: Cannot read property 'coding' of undefined
+      console.log(people.info?.coding); // undefined : 可選串連, 若左邊 info 為 null 或 undefined 則不會報錯
+    </script>
+  </body>
+</html>

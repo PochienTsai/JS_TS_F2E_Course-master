@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>模糊匹配</title>
+  </head>
+  <body>
+    <ul id="app"></ul>
+
+    <script>
+      const regex = /E([a-zA-Z]+)t/g;  // g 代表全域搜尋 // [a-zA-Z] 代表 a-z 或 A-Z 的字母 // + 代表一個或多個
+
+      const str =
+        "ECMAScript Javscript EggCat E123456789t Eabcdefg ecmascripT Ecmascript";
+
+      const txt = str.match(regex);
+      console.log(txt);
+      let html = "";
+      txt.forEach((item) => {
+        html += `<li>${item}</li>`;
+      });
+
+      document.querySelector("#app").innerHTML = html;
+    </script>
+  </body>
+</html>

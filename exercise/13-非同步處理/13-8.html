@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>非同步資料動態渲染列表實作 (GET)</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/13-8.css" />
+</head>
+<body>
+  <div id="app">
+    <img id="logo" src="../images/logo1.png" alt="" />
+
+    <select id="city" name="city">
+      <!-- <option value=""></option> -->
+    </select>
+
+    <select id="area" name="area">
+      <!-- <option value=""></option> -->
+    </select>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script>
+    let cityArr = [];
+    let areaArr = [];
+    let cityHtml = '';
+    let areaHtml = '';
+    // https://vue-lessons-api.vercel.app/city/list
+    axios.get('https://vue-lessons-api.vercel.app/city/list').then((res) =>
+    {
+      console.log(res.data.twzip.city);
+      cityArr = res.data.twzip.city;
+      cityRender();
+      areaRender(document.querySelector('#city').value);
+    });
+    function areaRender(city)
+    {
+      areaHtml = '';
+      const mapCity = Object.groupBy(cityArr, ({name})=>name); //將cityArr以name為key分組
+      console.log(mapCity);
+      areaArr = mapCity[city][0].area;
+      //areaArr = filterCity(city)[0].area;
+      //console.log(areaArr);
+      areaArr.forEach((item) =>
+      {
+        areaHtml += `<option value="${item.name}">${item.name}</option>`;
+      });
+      document.querySelector('#area').innerHTML = areaHtml;
+    }
+
+    function cityRender()
+    {
+      cityArr.forEach((city) =>
+      {
+        cityHtml += `<option value="${city.name}">${city.name}</option>`;
+      });
+      document.querySelector('#city').innerHTML = cityHtml;
+      changeInputCity();
+    }
+
+//function filterCity(value)
+//{
+ // const city = cityArr.filter((item) =>
+  //{
+   // return item.name === value;
+  //});
+  //return city;
+//}
+
+    function changeInputCity()
+    {
+      document.querySelector('#city').addEventListener('change', (e) =>
+      {
+        console.log(e.target.value);
+        areaRender(e.target.value);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>淺拷貝與深拷貝 - 1</title>
+</head>
+<body>
+  <script>
+    const arr1 = ["mike", "andy"];
+    //const arr2 = arr1.slice(0); // 淺拷貝 : 會複製第一層的資料 (不會複製物件或陣列)
+    const arr2 = [...arr1]; // 展開運算子(淺拷貝) : 會複製第一層的資料 (不會複製物件或陣列)
+    arr1[1] = "jacky";
+    console.log(arr1); // ["mike", "jacky"]
+    console.log(arr2); // ["mike", "andy"]
+    const obj1 = {
+      name: "mike",
+      age: 12,
+    };
+    const obj2 = Object.assign({}, obj1); // 淺拷貝 : 會複製第一層的資料 (不會複製物件或陣列)
+    const obj3 = { ...obj1 }; // 展開運算子(淺拷貝) : 會複製第一層的資料 (不會複製物件或陣列)
+    obj1.age = 20;
+    console.log(obj1); // { name: "mike", age: 20 }
+    console.log(obj2); // { name: "mike", age: 12 }
+    console.log(obj3); // { name: "mike", age: 12 }
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>陣列迴圈應用一</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/02-4.css" />
+</head>
+<body>
+  <header></header>
+  <div id="app">
+    <h1>即時新聞</h1>
+    <ul id="list">
+      <!-- <li><a href="javascript:;"></a></li>-->
+    </ul>
+    <a class="More" href="javascript:;">More ></a>
+  </div>
+  <footer></footer>
+  <script>
+    let html = "";
+    const news = [
+      {
+        title: "31歲女繼承8.5億遺產!海選50人「幫忙花錢」",
+        url: "https://www.ettoday.net/news/20240113/2663120.htm",
+      },
+      {
+        title: "外媒：台灣反抗中國選出「麻煩製造者」",
+        url: "https://www.ettoday.net/news/20240113/2663739.htm",
+      },
+      {
+        title: "罷免侯友宜」破7.6萬人加入 謝龍介發聲...",
+        url: "https://www.ettoday.net/news/20240114/2663821.htm",
+      },
+      {
+        title: "BBC為何台灣大選對世界很重要?",
+        url: "https://www.ettoday.net/news/20240113/2663642.htm",
+      },
+      {
+        title: "網美浴室自拍爆紅短片800萬次觀看",
+        url: "https://www.ettoday.net/news/20240113/2663072.htm",
+      },
+      {
+        title: "男子辭職後「刪光4000份公司文件」",
+        url: "https://www.ettoday.net/news/20240112/2662372.htm",
+      },
+    ];
+    for (let i = 0; i < news.length; i++)
+    {
+      html += `<li><a href=${news[i].url}">${news[i].title}</a></li>`;
+    }
+    document.querySelector("#list").innerHTML = html;
+
+
+  </script>
+</body>
+</html>

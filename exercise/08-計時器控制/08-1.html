@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>計時器 setInterval()</title>
+  <link rel="stylesheet" href="./css/08-1.css" />
+</head>
+<body>
+  <h1 id="time"></h1>
+
+  <script>
+    const time = document.querySelector("#time");
+    let idx = 0;
+    time.innerHTML = idx;
+    const timerId = setInterval(() =>
+    {
+      idx++;
+      time.innerHTML = idx;
+      if (idx >= 10)
+      {
+        clearInterval(timerId); // 停止計時器
+      }
+    }, 1000); // 1000ms = 1s; 每隔 1 秒執行一次
+  </script>
+</body>
+</html>

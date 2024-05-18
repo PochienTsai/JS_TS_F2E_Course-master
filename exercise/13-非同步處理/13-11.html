@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>?? 空值合併運算符</title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+    <script>
+      axios.get("https://vue-lessons-api.vercel.app/city/list").then((res) => {
+        const twzip = res.data.twzip;
+        let jpzip = res.data.jpzip ?? {city: []}; // 空值合併運算符 ?? 用來判斷左邊的值是否為 null 或 undefined，若是則使用右邊的值
+
+        console.log(twzip);
+        console.log(jpzip);
+      });
+    </script>
+  </body>
+</html>

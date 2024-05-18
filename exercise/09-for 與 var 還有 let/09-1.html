@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>for迴圈與var還有let的作用域概念</title>
+</head>
+<body>
+  <script>
+    // 用 var 宣告
+    for (var i = 0; i < 5; i++)
+    {
+      //setTimeout(() => { console.log(i); }, 1000 * i);
+
+    } // 5 5 5 5 5
+
+    // 用 let 宣告
+    for (let i = 0; i < 5; i++) { setTimeout(() => { console.log(i); }, 1000 * i); } // 0 1 2 3 4
+  </script>
+</body>
+</html>
