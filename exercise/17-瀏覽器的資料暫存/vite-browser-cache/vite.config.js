@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 import eslint from "vite-plugin-eslint";
 
 export default defineConfig({
+  base: "./", // 確保相對路徑正確
   root: "src",
   build: {
     rollupOptions: {
