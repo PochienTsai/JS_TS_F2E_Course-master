@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("../images/bg/12.jpg");
+        background-image: url('../images/bg/12.jpg');
         background-size: cover;
         background-position: center bottom;
       }
@@ -59,14 +59,14 @@
       <input class="inpTxt" type="text" placeholder="請填入名字" />
       <button class="send">送出</button>
     </div>
-    <!-- https://jsxss.com/en/index.html -->
+    <!-- https://jsxss.com/en/index.html // 這是一個 XSS 防護的套件網址 -->
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
     <script>
-      const sendRef = document.querySelector(".send");
-      const titleRef = document.querySelector(".title");
-      sendRef.addEventListener("click", () => {
-        const inputValue = document.querySelector(".inpTxt").value;
-        titleRef.innerHTML = inputValue;
+      const sendRef = document.querySelector('.send');
+      const titleRef = document.querySelector('.title');
+      sendRef.addEventListener('click', () => {
+        const inputValue = document.querySelector('.inpTxt').value;
+        titleRef.innerHTML = filterXSS(inputValue); // 透過XSS防護套件進行過濾防止 XSS 攻擊
       });
     </script>
   </body>

@@ -17,9 +17,9 @@
         times：乘法。
         div：除法。
       */
-      const a = 0.1;
-      const b = 0.2;
-      console.log(a + b);
+      const a = new Big(0.1);
+      const b = a.plus(0.2);
+      console.log(b.toNumber());
     </script>
   </body>
 </html>
