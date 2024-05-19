@@ -10,7 +10,7 @@ let isDisable = false; // 是否禁止請求
 const limit = 10; // 每頁數量
 const cardBox = document.querySelector(".card_box");
 const loading = document.querySelector(".loading");
-
+let intersectionObserver = null;
 const renderRepos = () => {
   html = "";
   repos.forEach((item) => {
@@ -41,6 +41,7 @@ const getRepos = async () => {
     if (res.data.length < limit) {
       isDisable = true; // 禁止請求
       loading.style = "display: none"; // 隱藏 loading
+      intersectionObserver.unobserve(loading); // 停止監聽
     }
   } catch (error) {
     console.log(error);
@@ -53,3 +54,12 @@ const fetchInit = () => {
 
 // 初始化
 fetchInit();
+intersectionObserver = new IntersectionObserver((entries) => {
+  // 如果 intersectionRatio 为 0，则目标在视野外，
+  // 我们不需要做任何事情。
+  if (entries[0].intersectionRatio <= 0) return;
+
+  getRepos();
+});
+// 开始监听
+intersectionObserver.observe(loading);

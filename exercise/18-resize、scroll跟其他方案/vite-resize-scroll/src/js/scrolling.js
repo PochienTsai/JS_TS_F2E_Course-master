@@ -7,7 +7,22 @@ let repos = []; // repo列表
 let html = "";
 const limit = 100; // 一次取得的repo數量
 const cardBox = document.querySelector(".card_box");
-
+let cards = null;
+const scrollFun = () => {
+  cards.forEach((item) => {
+    const windowMid = window.innerHeight / 2;
+    if (item.getBoundingClientRect().top <= windowMid) {
+      item.classList.add("show");
+    } else {
+      item.classList.remove("show");
+    }
+  });
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+    cards.forEach((item) => {
+      item.classList.add("show");
+    });
+  }
+};
 const renderRepos = () => {
   html = "";
   repos.forEach((item) => {
@@ -26,6 +41,9 @@ const renderRepos = () => {
     `;
   });
   cardBox.innerHTML = html;
+  cards = document.querySelectorAll(".card");
+  console.log(cards);
+  scrollFun();
 };
 
 const getRepos = async () => {
@@ -44,3 +62,5 @@ const fetchInit = () => {
 
 // 初始化
 fetchInit();
+
+window.addEventListener("scroll", scrollFun);
