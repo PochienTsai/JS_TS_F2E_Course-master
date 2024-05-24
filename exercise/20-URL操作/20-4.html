@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("../images/bg/7.jpg");
+        background-image: url('../images/bg/7.jpg');
         background-size: cover;
         background-position: center bottom;
       }
@@ -26,9 +26,10 @@
   <body>
     <script>
       const url =
-        "https://medium.com/i-am-mike/%E5%9C%A8%E9%96%8B%E5%A7%8B%E5%AF%ABcode%E5%89%8D%E7%9A%84%E9%81%B8%E6%93%87-662b3a2debe8";
-
-      const url2 = "https://thecodingpro.com/courses/Nuxt3高效入門全攻略";
+        'https://medium.com/i-am-mike/%E5%9C%A8%E9%96%8B%E5%A7%8B%E5%AF%ABcode%E5%89%8D%E7%9A%84%E9%81%B8%E6%93%87-662b3a2debe8';
+      console.log(decodeURIComponent(url)); // "https://medium.com/i-am-mike/在開始寫code前的選擇-662b3a2debe8" // 解碼
+      const url2 = 'https://thecodingpro.com/courses/Nuxt3高效入門全攻略';
+      console.log(encodeURIComponent(url2)); // "https://thecodingpro.com/courses/Nuxt3%E9%AB%98%E6%95%88%E5%85%A5%E9%96%80%E5%85%A8%E6%94%BB%E7%95%A5" // 編碼
     </script>
   </body>
 </html>

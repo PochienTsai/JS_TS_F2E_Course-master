@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("../images/bg/12.jpg");
+        background-image: url('../images/bg/12.jpg');
         background-size: cover;
         background-position: center bottom;
       }
@@ -58,21 +58,31 @@
         window.history.replaceState({}, null, pathname); // 不會有歷史記錄
       */
 
-      const back = document.querySelector("#back");
-      const addName = document.querySelector("#addName");
-      const addAge = document.querySelector("#addAge");
-      const addPageIdx = document.querySelector("#addPageIdx");
-      const forward = document.querySelector("#forward");
+      const back = document.querySelector('#back');
+      const addName = document.querySelector('#addName');
+      const addAge = document.querySelector('#addAge');
+      const addPageIdx = document.querySelector('#addPageIdx');
+      const forward = document.querySelector('#forward');
 
-      back.addEventListener("click", () => {});
+      back.addEventListener('click', () => {
+        window.history.go(-1);
+      });
 
-      addName.addEventListener("click", () => {});
+      addName.addEventListener('click', () => {
+        window.history.pushState({}, null, `?name=Mike＆sex=Man`); // 會有歷史記錄
+      });
 
-      addAge.addEventListener("click", () => {});
+      addAge.addEventListener('click', () => {
+        window.history.pushState({}, null, `?sex=Man＆age=20`);
+      }); // 會有歷史記錄});
 
-      addPageIdx.addEventListener("click", () => {});
+      addPageIdx.addEventListener('click', () => {
+        window.history.pushState({}, null, `?pageIndex=1`);
+      });
 
-      forward.addEventListener("click", () => {});
+      forward.addEventListener('click', () => {
+        window.history.go(1); // 等於 history.forward()
+      });
     </script>
   </body>
 </html>

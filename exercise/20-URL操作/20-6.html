@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("../images/bg/12.jpg");
+        background-image: url('../images/bg/12.jpg');
         background-size: cover;
         background-position: center bottom;
       }
@@ -50,42 +50,66 @@
     </div>
     <script>
       /**
-        window.history.go(-1); // 等於 history.back()
-        window.history.go(1);  // 等於 history.forward()
-        window.history.go(-3); // 回到三頁之前
-        window.history.go(0);  // 瀏覽器會重新整理目前的頁面
-        window.history.pushState({}, null, pathname);  // 會有歷史記錄
-        window.history.replaceState({}, null, pathname); // 不會有歷史記錄
-      */
-
-      const back = document.querySelector("#back");
-      const addName = document.querySelector("#addName");
-      const addAge = document.querySelector("#addAge");
-      const addPageIdx = document.querySelector("#addPageIdx");
-      const forward = document.querySelector("#forward");
+              window.history.go(-1); // 等於 history.back()
+              window.history.go(1);  // 等於 history.forward()
+              window.history.go(-3); // 回到三頁之前
+              window.history.go(0);  // 瀏覽器會重新整理目前的頁面
+              window.history.pushState({}, null, pathname);  // 會有歷史記錄
+              window.history.replaceState({}, null, pathname); // 不會有歷史記錄
+            */
+      
+      const back = document.querySelector('#back');
+      const addName = document.querySelector('#addName');
+      const addAge = document.querySelector('#addAge');
+      const addPageIdx = document.querySelector('#addPageIdx');
+      const forward = document.querySelector('#forward');
       let age = 10;
 
-      back.addEventListener("click", () => {
-        window.history.go(-1);
+      const getQuery = () => {
+        const query = new URLSearchParams(window.location.search);
+        return query;
+      };
+      const queryParse = (urlQuery) => {
+        const queryKey = urlQuery.split('=')[0];
+        //目前網址沒有參數
+        if (window.location.search === '') {
+          return `?${urlQuery}`;
+        }
+        //目前有重複的參數，只改變value部分
+        if (window.location.search.includes(queryKey)) {
+          const queryValue = getQuery().get(queryKey); //取得目前參數的值
+          return window.location.search.replace(`${queryKey}=${queryValue}`, urlQuery);
+        }
+        //目前網址有其他參數，加入新的參數於後面
+        return `${window.location.search}&${urlQuery}`;
+      };
+
+      const routerQueryPush = (urlQuery) => {
+        const query = queryParse(urlQuery);
+        window.history.pushState({}, null, query);
+      };
+
+      back.addEventListener('click', () => {
+        // window.history.go(-1);
       });
 
-      addName.addEventListener("click", () => {
-        window.history.pushState({}, null, "?name=mike");
-        // routerQueryPush("name=mike");
+      addName.addEventListener('click', () => {
+        // window.history.pushState({}, null, "?name=mike");
+        routerQueryPush('name=mike');
       });
 
-      addAge.addEventListener("click", () => {
+      addAge.addEventListener('click', () => {
         age++;
-        window.history.pushState({}, null, "?age=12");
-        // routerQueryPush(`age=${age}`);
+        // window.history.pushState({}, null, "?age=12");
+        routerQueryPush(`age=${age}`);
       });
 
-      addPageIdx.addEventListener("click", () => {
-        window.history.pushState({}, null, "?pageIdx=4");
-        // routerQueryPush(`pageIdx=4`);
+      addPageIdx.addEventListener('click', () => {
+        //window.history.pushState({}, null, '?pageIdx=4');
+        routerQueryPush(`pageIdx=4`);
       });
 
-      forward.addEventListener("click", () => {
+      forward.addEventListener('click', () => {
         window.history.go(1);
       });
     </script>

@@ -1,12 +1,7 @@
 /*eslint-disable*/
 import "../css/normalize.css";
 import "../css/style.css";
-import {
-  routerQueryReplace,
-  routerQueryPush,
-  routerQueryRemove,
-  getParams,
-} from "./utils/url";
+import { routerQueryReplace, routerQueryPush, routerQueryRemove, getParams } from "./utils/url";
 import { apiGetTagsList, apiGetTagsProduct } from "../api";
 import loading from "./utils/load.js";
 
@@ -38,20 +33,62 @@ const productsRender = () => {
   content.innerHTML = productsHtml;
 
   // return Promise
+  return new Promise((resolve) => setTimeout(resolve, 0));
 };
 
 // 抓取產品資料
 const fetchProducts = async () => {
-  const params = {};
-  const res = await apiGetTagsProduct(params);
-  productsArr = res.data;
+  try {
+    const params = {};
+    const tagQuery = getParams().get("tag");
+    const childQuery = getParams().get("child");
+    if (tagQuery) {
+      params.tag = tagQuery;
+    }
+    if (childQuery) {
+      params.child = childQuery;
+    }
+    console.log(params);
+    const res = await apiGetTagsProduct(params);
+    productsArr = res.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 // 第二層選單渲染
-const tagChildRender = () => {};
+const tagChildRender = () => {
+  tagsChildHtml = "";
+  const tagQuery = getParams().get("tag");
+  const childQuery = getParams().get("child");
+  const child = tagsArr.filter((item) => item.id === tagQuery);
+  child.forEach((childItem) => {
+    childItem.child.forEach((item) => {
+      tagsChildHtml += `
+        <a id="${item.id}" class="${childQuery === item.id ? "active" : ""}" data-key="${item.id}">${item.name}</a>
+      `;
+    });
+  });
+  tagChild.innerHTML = tagsChildHtml;
+  console.log(3);
+  return new Promise((resolve) => setTimeout(resolve, 0));
+};
 
 // 第一層選單渲染
-const tagsRender = () => {};
+const tagsRender = () => {
+  tagsHtml = "";
+  const queryTag = getParams().get("tag");
+  console.log(queryTag);
+  tagsArr.forEach((item) => {
+    if (queryTag === item.id) {
+      tagsHtml += `<a id="${item.id}" class="active">${item.name}</a>`;
+    } else {
+      tagsHtml += `<a id="${item.id}">${item.name}</a>`;
+    }
+  });
+  tagParent.innerHTML = tagsHtml;
+  return new Promise((resolve) => setTimeout(resolve, 0));
+};
 
 // 抓 tags 所有資料
 const fetchTags = async () => {
@@ -65,7 +102,14 @@ const fetchTags = async () => {
 };
 
 // 網址確認
-const routeCheck = () => {};
+const routeCheck = () => {
+  // console.log(`url=${window.location.href}`); // 顯示當前網址
+  // console.log(`search=${window.location.search}`); // 顯示當前網址 query
+  if (window.location.search === "") {
+    routerQueryReplace("tag=frontEnd");
+  }
+  return new Promise((resolve) => setTimeout(resolve, 0)); //這種做法的目的是為了確保所有的同步代碼都已經執行完畢，並且在 Promise 解析之前，所有的同步程式碼或DOM 渲染都已經執行完成。
+};
 
 // 抓完產品資料後跟者渲染
 const fetchProductsRender = async () => {
@@ -76,11 +120,38 @@ const fetchProductsRender = async () => {
 // 第二層 tag event listener
 const addTagChildListener = () => {
   const tagChildAll = document.querySelectorAll(".child > a");
+  tagChildAll.forEach((item) => {
+    item.addEventListener("click", async (e) => {
+      loading.show();
+      const tagId = e.target.id;
+      routerQueryPush(`child=${tagId}`);
+      tagChildAll.forEach((item) => item.classList.remove("active"));
+      e.target.classList.add("active");
+      await fetchProductsRender();
+      loading.hidden();
+    });
+  });
 };
 
 // 第一層 tag event listener
 const addTagListener = () => {
   const tagParentAll = document.querySelectorAll(".parent > a");
+  console.log(tagParentAll);
+  tagParentAll.forEach((item) => {
+    item.addEventListener("click", async (e) => {
+      loading.show();
+      const tagId = e.target.id;
+      routerQueryPush(`tag=${tagId}`);
+      tagParentAll.forEach((item) => item.classList.remove("active"));
+      e.target.classList.add("active");
+      routerQueryRemove("child");
+
+      await tagChildRender();
+      await fetchProductsRender();
+      addTagChildListener();
+      loading.hidden();
+    });
+  });
 };
 
 // 初始化
@@ -94,6 +165,16 @@ const init = async () => {
   loading.hidden();
   addTagListener();
   addTagChildListener();
+  window.addEventListener("popstate", async () => {
+    loading.show();
+    await fetchTags(); // 抓 tags 所有資料
+    await tagsRender(); // 第一層 tags 渲染
+    await tagChildRender(); // 第二層 tags 渲染
+    await fetchProductsRender(); // 抓產品資料以及渲染
+    loading.hidden();
+    addTagListener();
+    addTagChildListener();
+  });
 };
 
 init();

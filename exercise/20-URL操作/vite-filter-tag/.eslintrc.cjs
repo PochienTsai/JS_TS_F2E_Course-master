@@ -19,31 +19,31 @@ module.exports = {
   // 規則說明 ( https://eslint.org/docs/latest/use/configure/rules )
   // 所有的規則 ( https://eslint.org/docs/latest/rules/ )
   rules: {
-    "no-unused-vars": "off",
-    "no-console": "off",
-    "no-promise-executor-return": "off",
-    "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
-    "no-loop-func": "off",
-    "array-callback-return": "error",
-    "object-curly-newline": "off",
-    "max-len": ["error", { code: 140 }],
-    quotes: ["error", "double"],
+    "no-unused-vars": "off", // 關閉未使用的變數
+    "no-console": "off", // 關閉 console.log
+    "no-promise-executor-return": "off", // 關閉 Promise 回傳 Promise
+    "no-plusplus": ["error", { allowForLoopAfterthoughts: true }], // 關閉 ++ --
+    "no-loop-func": "off", // 關閉在迴圈中使用函數
+    "array-callback-return": "error", // 陣列方法必須有 return
+    "object-curly-newline": "off", // 關閉物件換行
+    "max-len": ["error", { code: 140 }], // 一行最大長度
+    quotes: ["error", "double"], // 引號
 
     // import 副檔名是否需要 ( https://github.com/import-js/eslint-plugin-import#eslint-plugin-import )
-    "import/extensions": "off",
+    "import/extensions": "off", // 關閉副檔名
 
     // 模組是否要導出預設值 ( https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md )
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": "off", // 關閉導出預設值
 
     // 隱式箭頭換行符 ( https://eslint.org/docs/latest/rules/implicit-arrow-linebreak )
-    "implicit-arrow-linebreak": "off",
+    "implicit-arrow-linebreak": "off", // 關閉隱式箭頭換行符
 
     // https://github.com/import-js/eslint-plugin-import/blob/v2.28.1/docs/rules/no-extraneous-dependencies.md
     "import/no-extraneous-dependencies": [
       "error",
-      { devDependencies: ["vite.config.js"] },
+      { devDependencies: ["vite.config.js"] }, // vite.config.js 不算在 devDependencies
     ],
     // https://stackoverflow.com/questions/37826449/expected-linebreaks-to-be-lf-but-found-crlf-linebreak-style
-    "linebreak-style": ["off", "windows"],
+    "linebreak-style": ["off", "windows"], // 關閉換行符
   },
 };

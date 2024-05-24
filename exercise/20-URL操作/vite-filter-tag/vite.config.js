@@ -5,11 +5,15 @@ import { defineConfig } from "vite";
 import eslint from "vite-plugin-eslint";
 
 export default defineConfig({
+  base: "./", // 設定為相對路徑
   root: "src",
   build: {
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
+      },
+      output: {
+        dir: resolve(__dirname, "dist"), // __dirname  :  當前模組的絕對路徑，是nodejs的環境變數
       },
     },
   },

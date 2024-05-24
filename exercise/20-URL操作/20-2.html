@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("../images/bg/7.jpg");
+        background-image: url('../images/bg/7.jpg');
         background-size: cover;
         background-position: center bottom;
       }
@@ -27,6 +27,10 @@
     <script>
       // https://thecodingpro.com/?country=TW&view=desc&rate=77
       // window.location.search -> "?country=TW&view=desc&rate=77"
+      const query = new URLSearchParams(window.location.search); // URLSearchParams { 'country' => 'TW', 'view' => 'desc', 'rate' => '77' }
+      query.get('country'); // "TW"
+      query.get('view'); // "desc"
+      query.get('rate'); // "77"
     </script>
   </body>
 </html>

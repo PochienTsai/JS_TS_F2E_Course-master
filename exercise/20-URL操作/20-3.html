@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("../images/bg/7.jpg");
+        background-image: url('../images/bg/7.jpg');
         background-size: cover;
         background-position: center bottom;
       }
@@ -34,10 +34,10 @@
   <body>
     <button id="gotoPage">click</button>
     <script>
-      const gotoPage = document.querySelector("#gotoPage");
+      const gotoPage = document.querySelector('#gotoPage');
 
-      gotoPage.addEventListener("click", () => {
-        window.location.href = "https://thecodingpro.com/";
+      gotoPage.addEventListener('click', () => {
+        window.location.href = `https://thecodingpro.com/${window.location.search}`; // 保留 query 參數
       });
     </script>
   </body>
